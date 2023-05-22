@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OpenSkyCrmModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="os_articles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="250" />
+    <Property Name="CategorieId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ReferenceInternal" Type="varchar" MaxLength="50" />
+    <Property Name="InitialAmount" Type="int" />
+    <Property Name="CurrentAmount" Type="int" />
+    <Property Name="MinimumAmount" Type="int" />
+    <Property Name="Price" Type="float" />
+    <Property Name="IvaId" Type="uniqueidentifier" />
+    <Property Name="UserCreated" Type="uniqueidentifier" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="UserUpdate" Type="uniqueidentifier" />
+    <Property Name="DateUpdate" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="os_articles_categories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="250" />
+    <Property Name="Status" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="os_city">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="150" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="os_currency_type">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="os_customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="250" />
+    <Property Name="SecondName" Type="varchar" MaxLength="250" />
+    <Property Name="FirstLastName" Type="varchar" MaxLength="250" />
+    <Property Name="SecondLastName" Type="varchar" MaxLength="250" />
+    <Property Name="CityId" Type="uniqueidentifier" />
+    <Property Name="Neighborhood" Type="varchar" MaxLength="300" />
+    <Property Name="Address" Type="varchar" MaxLength="350" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+    <Property Name="DocumentTypeId" Type="uniqueidentifier" />
+    <Property Name="DocumentNumber" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="os_document_type">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="150" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="os_invoices_detail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InvoicesHeaderId" Type="uniqueidentifier" />
+    <Property Name="NumberItems" Type="int" />
+    <Property Name="ArticlesId" Type="uniqueidentifier" />
+    <Property Name="AmountArticles" Type="float" />
+    <Property Name="PriceUnit" Type="float" />
+    <Property Name="IvaId" Type="uniqueidentifier" />
+    <Property Name="PriceTotal" Type="float" />
+    <Property Name="UserCreated" Type="uniqueidentifier" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="UserUpdate" Type="uniqueidentifier" />
+    <Property Name="DateUpdate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="os_invoices_header">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProcessNumber" Type="varchar" MaxLength="50" />
+    <Property Name="InvoicesNumber" Type="varchar" MaxLength="50" />
+    <Property Name="InvoicesNumberRange" Type="int" />
+    <Property Name="DateInvoices" Type="datetime" />
+    <Property Name="SalesConditionId" Type="uniqueidentifier" />
+    <Property Name="CustomerId" Type="uniqueidentifier" />
+    <Property Name="CurrencyTypeId" Type="varchar" MaxLength="50" />
+    <Property Name="TotalInvoiceAmount" Type="float" />
+    <Property Name="BranchCompanyId" Type="uniqueidentifier" />
+    <Property Name="TimbradoDataId" Type="uniqueidentifier" />
+    <Property Name="UserCreatedId" Type="uniqueidentifier" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="UserUpdateId" Type="uniqueidentifier" />
+    <Property Name="DateUpdate" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="os_iva">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Impuesto" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="os_payment_types">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="os_payments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InvoiceHeaderId" Type="uniqueidentifier" />
+    <Property Name="PaymentTypeId" Type="varchar" MaxLength="50" />
+    <Property Name="AmountPaid" Type="float" />
+    <Property Name="Change" Type="float" />
+    <Property Name="VoucherNumber" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="os_sales_conditions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="150" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="os_timbrado_data">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="BranchCompanyId" Type="uniqueidentifier" />
+    <Property Name="Timbrado" Type="varchar" MaxLength="50" />
+    <Property Name="StartRangeTimbrado" Type="int" />
+    <Property Name="EndRangeTimbrado" Type="int" />
+    <Property Name="StartDateValidityTimbrado" Type="datetime" />
+    <Property Name="EndDateValidityTimbrado" Type="datetime" />
+    <Property Name="InvoicesPuntoExpedicion" Type="varchar" MaxLength="50" />
+    <Property Name="InvoicesPuntoEstablecimiento" Type="varchar" MaxLength="50" />
+    <Property Name="UserCreatedId" Type="uniqueidentifier" />
+    <Property Name="DateCreated" Type="datetime" />
+    <Property Name="UserUpdateId" Type="uniqueidentifier" />
+    <Property Name="DateUpdate" Type="datetime" />
+    <Property Name="Status" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <Association Name="FK_os_articles_os_articles_categories">
+    <End Role="os_articles_categories" Type="Self.os_articles_categories" Multiplicity="1" />
+    <End Role="os_articles" Type="Self.os_articles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_articles_categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_articles">
+        <PropertyRef Name="CategorieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_articles_os_iva">
+    <End Role="os_iva" Type="Self.os_iva" Multiplicity="0..1" />
+    <End Role="os_articles" Type="Self.os_articles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_iva">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_articles">
+        <PropertyRef Name="IvaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_customers_os_city">
+    <End Role="os_city" Type="Self.os_city" Multiplicity="0..1" />
+    <End Role="os_customers" Type="Self.os_customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_city">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_customers">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_customers_os_document_type">
+    <End Role="os_document_type" Type="Self.os_document_type" Multiplicity="0..1" />
+    <End Role="os_customers" Type="Self.os_customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_document_type">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_customers">
+        <PropertyRef Name="DocumentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_invoices_detail_os_invoices_header">
+    <End Role="os_invoices_header" Type="Self.os_invoices_header" Multiplicity="0..1" />
+    <End Role="os_invoices_detail" Type="Self.os_invoices_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_invoices_header">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_invoices_detail">
+        <PropertyRef Name="InvoicesHeaderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_invoices_header_os_currency_type">
+    <End Role="os_currency_type" Type="Self.os_currency_type" Multiplicity="0..1" />
+    <End Role="os_invoices_header" Type="Self.os_invoices_header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_currency_type">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_invoices_header">
+        <PropertyRef Name="CurrencyTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_invoices_header_os_customers">
+    <End Role="os_customers" Type="Self.os_customers" Multiplicity="0..1" />
+    <End Role="os_invoices_header" Type="Self.os_invoices_header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_invoices_header">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_invoices_header_os_timbrado_data">
+    <End Role="os_timbrado_data" Type="Self.os_timbrado_data" Multiplicity="0..1" />
+    <End Role="os_invoices_header" Type="Self.os_invoices_header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_timbrado_data">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_invoices_header">
+        <PropertyRef Name="TimbradoDataId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_payments_os_invoices_header">
+    <End Role="os_invoices_header" Type="Self.os_invoices_header" Multiplicity="0..1" />
+    <End Role="os_payments" Type="Self.os_payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_invoices_header">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_payments">
+        <PropertyRef Name="InvoiceHeaderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_payments_os_payment_types">
+    <End Role="os_payment_types" Type="Self.os_payment_types" Multiplicity="0..1" />
+    <End Role="os_payments" Type="Self.os_payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_payment_types">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_payments">
+        <PropertyRef Name="PaymentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OpenSkyCrmModelStoreContainer">
+    <EntitySet Name="os_articles" EntityType="Self.os_articles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="os_articles_categories" EntityType="Self.os_articles_categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="os_city" EntityType="Self.os_city" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="os_currency_type" EntityType="Self.os_currency_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="os_customers" EntityType="Self.os_customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="os_document_type" EntityType="Self.os_document_type" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="os_invoices_detail" EntityType="Self.os_invoices_detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="os_invoices_header" EntityType="Self.os_invoices_header" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="os_iva" EntityType="Self.os_iva" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="os_payment_types" EntityType="Self.os_payment_types" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="os_payments" EntityType="Self.os_payments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="os_sales_conditions" EntityType="Self.os_sales_conditions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="os_timbrado_data" EntityType="Self.os_timbrado_data" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_os_articles_os_articles_categories" Association="Self.FK_os_articles_os_articles_categories">
+      <End Role="os_articles_categories" EntitySet="os_articles_categories" />
+      <End Role="os_articles" EntitySet="os_articles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_articles_os_iva" Association="Self.FK_os_articles_os_iva">
+      <End Role="os_iva" EntitySet="os_iva" />
+      <End Role="os_articles" EntitySet="os_articles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_customers_os_city" Association="Self.FK_os_customers_os_city">
+      <End Role="os_city" EntitySet="os_city" />
+      <End Role="os_customers" EntitySet="os_customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_customers_os_document_type" Association="Self.FK_os_customers_os_document_type">
+      <End Role="os_document_type" EntitySet="os_document_type" />
+      <End Role="os_customers" EntitySet="os_customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_invoices_detail_os_invoices_header" Association="Self.FK_os_invoices_detail_os_invoices_header">
+      <End Role="os_invoices_header" EntitySet="os_invoices_header" />
+      <End Role="os_invoices_detail" EntitySet="os_invoices_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_invoices_header_os_currency_type" Association="Self.FK_os_invoices_header_os_currency_type">
+      <End Role="os_currency_type" EntitySet="os_currency_type" />
+      <End Role="os_invoices_header" EntitySet="os_invoices_header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_invoices_header_os_customers" Association="Self.FK_os_invoices_header_os_customers">
+      <End Role="os_customers" EntitySet="os_customers" />
+      <End Role="os_invoices_header" EntitySet="os_invoices_header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_invoices_header_os_timbrado_data" Association="Self.FK_os_invoices_header_os_timbrado_data">
+      <End Role="os_timbrado_data" EntitySet="os_timbrado_data" />
+      <End Role="os_invoices_header" EntitySet="os_invoices_header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_payments_os_invoices_header" Association="Self.FK_os_payments_os_invoices_header">
+      <End Role="os_invoices_header" EntitySet="os_invoices_header" />
+      <End Role="os_payments" EntitySet="os_payments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_payments_os_payment_types" Association="Self.FK_os_payments_os_payment_types">
+      <End Role="os_payment_types" EntitySet="os_payment_types" />
+      <End Role="os_payments" EntitySet="os_payments" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "Articulos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<OpenSky.Models.Dtos.SalesListDto>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-12">
+                <div class="col-sm-12">
+                    <h1>Lista de facturas</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-secondary">
+                <div class="card-header">
+                    @*<h3 class="card-title">Lista de facturas</h3>*@
+                    <div class="card-tools pull-right">
+                        <button type="button" id="btnAdd" class="btn btn-success">Crear</button>
+                        @*<button onclick="exportTableToExcel('example102', 'members-data')">Export Table Data To Excel File</button>*@
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        Buscar
+                                    </button>
+                                    <ul class="dropdown-menu" id="ddlSearchType">
+                                        <li><button class="dropdown-item" onclick="filter_table('npro')" type="button">Número de proceso</button></li>
+                                        <li><button class="dropdown-item" onclick="filter_table('fact')" type="button">Número de factura</button></li>
+                                        <li><button class="dropdown-item" onclick="filter_table('ncli')" type="button">Nombre cliente</button></li>
+                                        <li><button class="dropdown-item" onclick="filter_table('rucc')" type="button">Ruc cliente</button></li>
+                                        <li><div class="dropdown-divider"></div></li>
+                                        <li><button class="dropdown-item" onclick="filter_table('limp')" type="button">Limpiar</button></li>
+                                    </ul>
+                                </div>
+                                <!-- /btn-group -->
+                                <input type="text" id="txtData" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table id="example102" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Proceso</th>
+                                        <th>Número factura</th>
+                                        <th>Timbrado</th>
+                                        <th>Fecha factura</th>
+                                        <th>Monto factura</th>
+                                        <th>Fecha creación</th>
+                                        <th>Cliente</th>
+                                        <th>Sucursal</th>
+                                        <th>Vendedor</th>
+                                        <th>Estado</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyTabla">
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Process_number)
+                                                <input type="hidden" value="@item.Id" />
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Invoices_number)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Timbrado)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateInvoices)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.AmountInvoices)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateCreated)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Customer)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Branch)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.User)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </td>
+                                            <td>
+                                                <a style="color:blue" id="btnEdit"><i class="fa fa-edit"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Proceso</th>
+                                        <th>Número factura</th>
+                                        <th>Timbrado</th>
+                                        <th>Fecha factura</th>
+                                        <th>Monto factura</th>
+                                        <th>Impuesto</th>
+                                        <th>Cliente</th>
+                                        <th>Sucursal</th>
+                                        <th>Vendedor</th>
+                                        <th>Estado</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Scripts/sales.js"></script>
+    <script src="~/Scripts/ExportTableToExcel.js"></script>
+</div>
+
+

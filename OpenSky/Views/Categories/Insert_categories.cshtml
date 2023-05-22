@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Crear Artículos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-11">
+                    <h1>Crear categorías</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <div class="container-fluid">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Crear categorías</h3>
+                            <div class="card-tools pull-right">
+                                <button type="button" class="btn btn-danger" id="btnBack"><i class="fa fa-reply" aria-hidden="true"></i></button>
+                                <button type="button" class="btn btn-success" id="btnSave"><i class="fa fa-save" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label>Nombre</label>
+                                        <input id="txtCategorieName" type="text" class="form-control" placeholder="Nombre ...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Scripts/categories.js"></script>
+</div>
+

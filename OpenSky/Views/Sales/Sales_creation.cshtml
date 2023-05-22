@@ -1,0 +1,257 @@
+﻿
+@{
+    ViewBag.Title = "Sales";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<SelectListItem> itemsCustomer = (List<SelectListItem>)ViewBag.listCustomers;
+    List<SelectListItem> itemsArticles = (List<SelectListItem>)ViewBag.listArticles;
+    List<SelectListItem> itemsSalesConditions = (List<SelectListItem>)ViewBag.listSalesConditions;
+    List<SelectListItem> itemsCurrencyType = (List<SelectListItem>)ViewBag.listCurrencyType;
+    List<SelectListItem> itemsPaymentType = (List<SelectListItem>)ViewBag.listPaymentType;
+}
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-12">
+                <div class="col-sm-12">
+                    <h1>Facturación</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-secondary">
+                <div class="card-header">
+                    @*<h3 class="card-title">Facturación</h3>*@
+                    <button type="button" id="btnBack" class="btn btn-default">Volver</button>
+                    <div class="card-tools pull-right">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default" title="Pagar">
+                            Pagar
+                        </button>
+                        <button type="button" id="btnPrint" class="btn btn-primary">Imprimir</button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <div class="modal fade" id="modal-default">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Registrar pagos</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <small>Monto factura</small>
+                                            @Html.DropDownList("Opciones", itemsPaymentType, new { @class = "form-control", @id = "ddlPaymentType", @style = "width: 100%;", onchange = "control_type_payment(this);" })
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <small>Monto licitado</small>
+                                            <input type="text" class="form-control separador_de_miles" onchange="know_change(this);" id="txtMontoLicitado">
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <small>Cambio</small>
+                                            <input type="text" class="form-control" id="txtCambio">
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <small>Número boucher / cheque</small>
+                                            <input type="number" min="1" step="1" class="form-control" id="txtNumeroVoucher" aria-label="Amount" name="quantity" inputmode="numeric" pattern="[0-9]*">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer justify-content-between">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" onclick="make_payment();" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Clientes</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                @Html.DropDownList("Opciones", itemsCustomer, "Seleccione cliente", new { @class = "form-control select2bs4", @id = "ddlCustomer", @style = "width: 100%;" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="txtCurrentDate" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                @Html.DropDownList("Opciones", itemsSalesConditions, new { @class = "form-control ", @id = "ddlSalesConditions", @style = "width: 100%;" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                @Html.DropDownList("Opciones", itemsCurrencyType, new { @class = "form-control ", @id = "ddlCurrencyType", @style = "width: 100%;" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <div class="card card-info">
+                                <div class="card-header">
+                                    <h3 class="card-title">Artículos</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                @Html.DropDownList("Opciones", itemsArticles, "Seleccione artículo", new { @class = "select2bs4 form-control", @id = "ddlArticles", @style = "width: 100%;", onchange = "Change_price();" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <input type="number" min="1" step="1" class="form-control" id="txtAmount" aria-label="Amount" name="quantity" placeholder="Cantidad" inputmode="numeric" pattern="[0-9]*">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <input type="number" min="1" step="1" class="form-control" id="txtPrice" aria-label="Amount" name="quantity" placeholder="Precio" inputmode="numeric" pattern="[0-9]*">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <button type="button" id="btnSave" class="btn btn-block btn-secondary">Guardar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <input type="text" id="txtTotalInvoiceAmount" class="form-control" placeholder="Monto total de la factura" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <table id="example11" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Artículo</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio unitario</th>
+                                        <th>Impuesto</th>
+                                        <th>Total</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyTabla">
+                                    @*<tr>
+                                            <td>Trident</td>
+                                            <td>Internet</td>
+                                            <td>Win 95+</td>
+                                            <td>4</td>
+                                            <td>X</td>
+                                            <td>X</td>
+                                            <td>X</td>
+                                        </tr>*@
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Artículo</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio unitario</th>
+                                        <th>Impuesto</th>
+                                        <th>Total</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+        <input type="hidden" id="impIdInvoices" />
+        <input type="hidden" id="impInvoicesCreated" />
+    </section>
+    <!-- /.content -->
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <script>
+        $(function () {
+            loadDate();
+            $("#txtNumeroVoucher").prop('disabled', true);
+            $("#txtCambio").prop('disabled', true);
+            $('#txtTotalInvoiceAmount').mask('000.000.000,00', { reverse: true });
+        })
+
+        function loadDate() {
+            var fecha = new Date(); //Fecha actual
+            var mes = fecha.getMonth() + 1; //obteniendo mes
+            var dia = fecha.getDate(); //obteniendo dia
+            var ano = fecha.getFullYear(); //obteniendo año
+            if (dia < 10)
+                dia = '0' + dia; //agrega cero si el menor de 10
+            if (mes < 10)
+                mes = '0' + mes //agrega cero si el menor de 10
+            document.getElementById('txtCurrentDate').value = dia + "/" + mes + "/" + ano;
+        }
+    </script>
+    <script src="~/Scripts/sales.js"></script>
+    <script src="~/Scripts/payments.js"></script>
+    <script src="~/Scripts/printPdf.js"></script>
+    <script>
+        $("#btnBack").on('click', function () {
+            location.href = "/Sales/Sales";
+        })
+
+        const number = document.querySelector('.separador_de_miles');
+        function formatNumber(n) {
+            n = String(n).replace(/\D/g, "");
+            return n === '' ? n : Number(n).toLocaleString();
+        };
+        number.addEventListener('keyup', (e) => {
+            const element = e.target;
+            const value = element.value;
+            element.value = formatNumber(value);
+        });
+    </script>
+</div>
+
+

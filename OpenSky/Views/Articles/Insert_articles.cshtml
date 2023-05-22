@@ -1,0 +1,83 @@
+﻿@{
+    ViewBag.Title = "Crear Artículos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<SelectListItem> itemsCategories = (List<SelectListItem>)ViewBag.listCategories;
+    List<SelectListItem> itemsTaxes = (List<SelectListItem>)ViewBag.listTaxes;
+}
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-11">
+                    <h1>Crear artículos</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Crear articulo</h3>
+                    <div class="card-tools pull-right">
+                        <button type="button" class="btn btn-danger" id="btnBack"><i class="fa fa-reply" aria-hidden="true"></i></button>
+                        <button type="button" class="btn btn-success" id="btnSave"><i class="fa fa-save" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Nombre</label>
+                                <input id="txtNombre" type="text" class="form-control" placeholder="Nombre ...">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Código</label>
+                                <input id="txtCodigo" type="text" class="form-control" placeholder="Código ...">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Categoría</label>
+                                @Html.DropDownList("Opciones", itemsCategories, "Selecciona una categoría", new { @class = "form-control", @id = "ddlCategorias" })
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Precio</label>
+                                <input type="number" min="1" step="1" class="form-control" id="txtPrecio" aria-label="Amount" name="quantity" placeholder="Precio Ej: 5555,55" inputmode="numeric" pattern="[0-9]*">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Cantidad mínima</label>
+                                <input type="number" min="1" step="1" class="form-control" id="txtCantidadMinima" aria-label="Amount" name="quantity" placeholder="Cantidad minima" inputmode="numeric" pattern="[0-9]*">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label>Iva</label>
+                                @Html.DropDownList("Opciones", itemsTaxes, "Seleccione Impuesto", new { @class = "form-control", @id = "ddlTaxes" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Scripts/articles.js"></script>
+</div>
+

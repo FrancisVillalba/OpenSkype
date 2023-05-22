@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Articulos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<OpenSky.Models.Dtos.CategoriesListDto>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-12">
+                <div class="col-sm-12">
+                    <h1>Lista de Categoria para los artículos</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10">
+                <div class="container-fluid">
+                    <div class="card card-secondary">
+                        <div class="card-header">
+                            <h3 class="card-title">Lista de Categoria para los artículos</h3>
+                            <div class="card-tools pull-right">
+                                <button type="button" class="btn btn-success" id="btnAdd"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="example1" class="table table-bordered table-striped hide-colum-table">
+                                <thead>
+                                    <tr>
+                                        @*<th style="width:15px;display:none">Id</th>*@
+                                        <th>Nombre</th>
+                                        <th style="width:15px">Activo</th>
+                                        <th style="width:15px">Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            @*<td style="width:15px;display:none">
+                                                @Html.DisplayFor(x => item.Id)
+                                            </td>*@
+                                            <td>
+                                                @Html.DisplayFor(x => item.Name)
+                                                <input type="hidden" value="@item.Id"/>
+                                            </td>
+                                            <td>
+                                                @Html.CheckBoxFor(x => item.Status, htmlAttributes: new { @id = @item.Id, @class = "my-checkBox" })
+                                            </td>
+                                            <td>
+                                                <a style="color:blue" id="btnEdit"><i class="fa fa-edit"></i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        @*<th style="width:15px;display:none">Id</th>*@
+                                        <th>Nombre</th>
+                                        <th>Activo</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Scripts/categories.js"></script>
+</div>
+
+

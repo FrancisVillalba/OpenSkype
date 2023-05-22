@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Articulos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<OpenSky.Models.Dtos.Articles>
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-12">
+                <div class="col-sm-12">
+                    <h1>Lista de Artículos</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="card card-secondary">
+                <div class="card-header">
+                    <h3 class="card-title">Lista de Artículos</h3>
+                    <div class="card-tools pull-right">
+                        <button type="button" id="btnAdd" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                @*<th style="width:15px">Id </th>*@
+                                <th>Código</th>
+                                <th>Artículo</th>
+                                <th>Categoría</th>
+                                <th>Precio</th>
+                                <th>Cantidad minima</th>
+                                <th>Iva</th>
+                                <th style="width:15px">Estado</th>
+                                <th style="width:15px">Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    @*<td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ReferenceInternal)
+                                        <input type="hidden" value="@item.Id" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Categorie)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MinimumAmount)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Iva_name)
+                                    </td>
+                                    <td>
+                                        @Html.CheckBoxFor(modelItem => item.Status, htmlAttributes: new { @id = @item.Id, @class = "my-checkBox" })
+                                    </td>
+                                    <td>
+                                        <a style="color:blue" id="btnEdit"><i class="fa fa-edit"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                @*<th>Id</th>*@
+                                <th>Código</th>
+                                <th>Artículo</th>
+                                <th>Categoría</th>
+                                <th>Precio</th>
+                                <th>Cantidad minima</th>
+                                <th>Iva</th>
+                                <th>Estado</th>
+                                <th>Acción</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </section>
+    <!-- /.content -->
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Scripts/articles.js"></script>
+</div>
+
+

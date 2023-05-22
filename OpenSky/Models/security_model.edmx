@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OpenSkySecurityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="os_areas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="os_branch_company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BranchCompanyNumber" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="os_charges">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="os_person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AreaId" Type="uniqueidentifier" />
+          <Property Name="ChargesId" Type="uniqueidentifier" />
+          <Property Name="BranchCompanyId" Type="uniqueidentifier" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="SecondName" Type="varchar" MaxLength="50" />
+          <Property Name="FirstLastName" Type="varchar" MaxLength="50" />
+          <Property Name="SecondLastName" Type="varchar" MaxLength="50" />
+          <Property Name="Document" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="Birthdate" Type="datetime" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="UsuCreated" Type="uniqueidentifier" />
+          <Property Name="Status" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="os_profiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Status" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="os_status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="os_user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PersonId" Type="uniqueidentifier" />
+          <Property Name="ProfileId" Type="uniqueidentifier" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="150" />
+          <Property Name="Status" Type="varchar" MaxLength="1" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="UserCreated" Type="uniqueidentifier" />
+          <Property Name="DateModified" Type="date" />
+          <Property Name="UserModified" Type="uniqueidentifier" />
+          <Property Name="ResetPassword" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_os_person_os_areas">
+          <End Role="os_areas" Type="Self.os_areas" Multiplicity="0..1" />
+          <End Role="os_person" Type="Self.os_person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_areas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_person">
+              <PropertyRef Name="AreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_os_person_os_branch_company">
+          <End Role="os_branch_company" Type="Self.os_branch_company" Multiplicity="0..1" />
+          <End Role="os_person" Type="Self.os_person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_branch_company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_person">
+              <PropertyRef Name="BranchCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_os_person_os_charges">
+          <End Role="os_charges" Type="Self.os_charges" Multiplicity="0..1" />
+          <End Role="os_person" Type="Self.os_person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_charges">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_person">
+              <PropertyRef Name="ChargesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_os_user_os_person">
+          <End Role="os_person" Type="Self.os_person" Multiplicity="0..1" />
+          <End Role="os_user" Type="Self.os_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_user">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_os_user_os_profiles">
+          <End Role="os_profiles" Type="Self.os_profiles" Multiplicity="0..1" />
+          <End Role="os_user" Type="Self.os_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_profiles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_user">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OpenSkySecurityModelStoreContainer">
+          <EntitySet Name="os_areas" EntityType="Self.os_areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="os_branch_company" EntityType="Self.os_branch_company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="os_charges" EntityType="Self.os_charges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="os_person" EntityType="Self.os_person" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="os_profiles" EntityType="Self.os_profiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="os_status" EntityType="Self.os_status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="os_user" EntityType="Self.os_user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_os_person_os_areas" Association="Self.FK_os_person_os_areas">
+            <End Role="os_areas" EntitySet="os_areas" />
+            <End Role="os_person" EntitySet="os_person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_os_person_os_branch_company" Association="Self.FK_os_person_os_branch_company">
+            <End Role="os_branch_company" EntitySet="os_branch_company" />
+            <End Role="os_person" EntitySet="os_person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_os_person_os_charges" Association="Self.FK_os_person_os_charges">
+            <End Role="os_charges" EntitySet="os_charges" />
+            <End Role="os_person" EntitySet="os_person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_os_user_os_person" Association="Self.FK_os_user_os_person">
+            <End Role="os_person" EntitySet="os_person" />
+            <End Role="os_user" EntitySet="os_user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_os_user_os_profiles" Association="Self.FK_os_user_os_profiles">
+            <End Role="os_profiles" EntitySet="os_profiles" />
+            <End Role="os_user" EntitySet="os_user" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OpenSkySecurityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="OpenSkySecurityEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="os_areas" EntityType="OpenSkySecurityModel.os_areas" />
+          <EntitySet Name="os_charges" EntityType="OpenSkySecurityModel.os_charges" />
+          <EntitySet Name="os_person" EntityType="OpenSkySecurityModel.os_person" />
+          <EntitySet Name="os_profiles" EntityType="OpenSkySecurityModel.os_profiles" />
+          <EntitySet Name="os_status" EntityType="OpenSkySecurityModel.os_status" />
+          <EntitySet Name="os_user" EntityType="OpenSkySecurityModel.os_user" />
+          <AssociationSet Name="FK_os_person_os_areas" Association="OpenSkySecurityModel.FK_os_person_os_areas">
+            <End Role="os_areas" EntitySet="os_areas" />
+            <End Role="os_person" EntitySet="os_person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_os_person_os_charges" Association="OpenSkySecurityModel.FK_os_person_os_charges">
+            <End Role="os_charges" EntitySet="os_charges" />
+            <End Role="os_person" EntitySet="os_person" />
+          </AssociationSet>
+          <AssociationSet Name="FK_os_user_os_person" Association="OpenSkySecurityModel.FK_os_user_os_person">
+            <End Role="os_person" EntitySet="os_person" />
+            <End Role="os_user" EntitySet="os_user" />
+          </AssociationSet>
+          <AssociationSet Name="FK_os_user_os_profiles" Association="OpenSkySecurityModel.FK_os_user_os_profiles">
+            <End Role="os_profiles" EntitySet="os_profiles" />
+            <End Role="os_user" EntitySet="os_user" />
+          </AssociationSet>
+          <EntitySet Name="os_branch_company" EntityType="OpenSkySecurityModel.os_branch_company" />
+          <AssociationSet Name="FK_os_person_os_branch_company" Association="OpenSkySecurityModel.FK_os_person_os_branch_company">
+            <End Role="os_branch_company" EntitySet="os_branch_company" />
+            <End Role="os_person" EntitySet="os_person" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="os_areas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="os_person" Relationship="OpenSkySecurityModel.FK_os_person_os_areas" FromRole="os_areas" ToRole="os_person" />
+        </EntityType>
+        <EntityType Name="os_charges">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="os_person" Relationship="OpenSkySecurityModel.FK_os_person_os_charges" FromRole="os_charges" ToRole="os_person" />
+        </EntityType>
+        <EntityType Name="os_person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="AreaId" Type="Guid" />
+          <Property Name="ChargesId" Type="Guid" />
+          <Property Name="BranchCompanyId" Type="Guid" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SecondName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SecondLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Document" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Birthdate" Type="DateTime" Precision="3" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="UsuCreated" Type="Guid" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="os_areas" Relationship="OpenSkySecurityModel.FK_os_person_os_areas" FromRole="os_person" ToRole="os_areas" />
+          <NavigationProperty Name="os_charges" Relationship="OpenSkySecurityModel.FK_os_person_os_charges" FromRole="os_person" ToRole="os_charges" />
+          <NavigationProperty Name="os_user" Relationship="OpenSkySecurityModel.FK_os_user_os_person" FromRole="os_person" ToRole="os_user" />
+          <NavigationProperty Name="os_branch_company" Relationship="OpenSkySecurityModel.FK_os_person_os_branch_company" FromRole="os_person" ToRole="os_branch_company" />
+        </EntityType>
+        <EntityType Name="os_profiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="os_user" Relationship="OpenSkySecurityModel.FK_os_user_os_profiles" FromRole="os_profiles" ToRole="os_user" />
+        </EntityType>
+        <EntityType Name="os_status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="os_user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="PersonId" Type="Guid" />
+          <Property Name="ProfileId" Type="Guid" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="UserCreated" Type="Guid" />
+          <Property Name="DateModified" Type="DateTime" Precision="0" />
+          <Property Name="UserModified" Type="Guid" />
+          <Property Name="ResetPassword" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="os_person" Relationship="OpenSkySecurityModel.FK_os_user_os_person" FromRole="os_user" ToRole="os_person" />
+          <NavigationProperty Name="os_profiles" Relationship="OpenSkySecurityModel.FK_os_user_os_profiles" FromRole="os_user" ToRole="os_profiles" />
+        </EntityType>
+        <Association Name="FK_os_person_os_areas">
+          <End Type="OpenSkySecurityModel.os_areas" Role="os_areas" Multiplicity="0..1" />
+          <End Type="OpenSkySecurityModel.os_person" Role="os_person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_areas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_person">
+              <PropertyRef Name="AreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_os_person_os_charges">
+          <End Type="OpenSkySecurityModel.os_charges" Role="os_charges" Multiplicity="0..1" />
+          <End Type="OpenSkySecurityModel.os_person" Role="os_person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_charges">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_person">
+              <PropertyRef Name="ChargesId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_os_user_os_person">
+          <End Type="OpenSkySecurityModel.os_person" Role="os_person" Multiplicity="0..1" />
+          <End Type="OpenSkySecurityModel.os_user" Role="os_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_user">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_os_user_os_profiles">
+          <End Type="OpenSkySecurityModel.os_profiles" Role="os_profiles" Multiplicity="0..1" />
+          <End Type="OpenSkySecurityModel.os_user" Role="os_user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_profiles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_user">
+              <PropertyRef Name="ProfileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="os_branch_company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="BranchCompanyNumber" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="os_person" Relationship="OpenSkySecurityModel.FK_os_person_os_branch_company" FromRole="os_branch_company" ToRole="os_person" />
+        </EntityType>
+        <Association Name="FK_os_person_os_branch_company">
+          <End Type="OpenSkySecurityModel.os_branch_company" Role="os_branch_company" Multiplicity="0..1" />
+          <End Type="OpenSkySecurityModel.os_person" Role="os_person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="os_branch_company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="os_person">
+              <PropertyRef Name="BranchCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OpenSkySecurityModelStoreContainer" CdmEntityContainer="OpenSkySecurityEntities">
+          <EntitySetMapping Name="os_areas">
+            <EntityTypeMapping TypeName="OpenSkySecurityModel.os_areas">
+              <MappingFragment StoreEntitySet="os_areas">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_charges">
+            <EntityTypeMapping TypeName="OpenSkySecurityModel.os_charges">
+              <MappingFragment StoreEntitySet="os_charges">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_person">
+            <EntityTypeMapping TypeName="OpenSkySecurityModel.os_person">
+              <MappingFragment StoreEntitySet="os_person">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UsuCreated" ColumnName="UsuCreated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Document" ColumnName="Document" />
+                <ScalarProperty Name="SecondLastName" ColumnName="SecondLastName" />
+                <ScalarProperty Name="FirstLastName" ColumnName="FirstLastName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="BranchCompanyId" ColumnName="BranchCompanyId" />
+                <ScalarProperty Name="ChargesId" ColumnName="ChargesId" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_profiles">
+            <EntityTypeMapping TypeName="OpenSkySecurityModel.os_profiles">
+              <MappingFragment StoreEntitySet="os_profiles">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_status">
+            <EntityTypeMapping TypeName="OpenSkySecurityModel.os_status">
+              <MappingFragment StoreEntitySet="os_status">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_user">
+            <EntityTypeMapping TypeName="OpenSkySecurityModel.os_user">
+              <MappingFragment StoreEntitySet="os_user">
+                <ScalarProperty Name="ResetPassword" ColumnName="ResetPassword" />
+                <ScalarProperty Name="UserModified" ColumnName="UserModified" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="UserCreated" ColumnName="UserCreated" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ProfileId" ColumnName="ProfileId" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="os_branch_company">
+            <EntityTypeMapping TypeName="OpenSkySecurityModel.os_branch_company">
+              <MappingFragment StoreEntitySet="os_branch_company">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BranchCompanyNumber" ColumnName="BranchCompanyNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

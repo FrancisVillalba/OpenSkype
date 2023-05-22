@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OpenSkyCrmModelStoreContainer" CdmEntityContainer="OpenSkyCrmEntities">
+    <EntitySetMapping Name="os_articles">
+      <EntityTypeMapping TypeName="OpenSkyCrmModel.os_articles">
+        <MappingFragment StoreEntitySet="os_articles">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+          <ScalarProperty Name="UserUpdate" ColumnName="UserUpdate" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="UserCreated" ColumnName="UserCreated" />
+          <ScalarProperty Name="IvaId" ColumnName="IvaId" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="MinimumAmount" ColumnName="MinimumAmount" />
+          <ScalarProperty Name="CurrentAmount" ColumnName="CurrentAmount" />
+          <ScalarProperty Name="InitialAmount" ColumnName="InitialAmount" />
+          <ScalarProperty Name="ReferenceInternal" ColumnName="ReferenceInternal" />
+          <ScalarProperty Name="CategorieId" ColumnName="CategorieId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="os_articles_categories">
+      <EntityTypeMapping TypeName="OpenSkyCrmModel.os_articles_categories">
+        <MappingFragment StoreEntitySet="os_articles_categories">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="os_city">
+      <EntityTypeMapping TypeName="OpenSkyCrmModel.os_city">
+        <MappingFragment StoreEntitySet="os_city">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="os_customers">
+      <EntityTypeMapping TypeName="OpenSkyCrmModel.os_customers">
+        <MappingFragment StoreEntitySet="os_customers">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DocumentNumber" ColumnName="DocumentNumber" />
+          <ScalarProperty Name="DocumentTypeId" ColumnName="DocumentTypeId" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Neighborhood" ColumnName="Neighborhood" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="SecondLastName" ColumnName="SecondLastName" />
+          <ScalarProperty Name="FirstLastName" ColumnName="FirstLastName" />
+          <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="os_document_type">
+      <EntityTypeMapping TypeName="OpenSkyCrmModel.os_document_type">
+        <MappingFragment StoreEntitySet="os_document_type">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="os_invoices_detail">
+      <EntityTypeMapping TypeName="OpenSkyCrmModel.os_invoices_detail">
+        <MappingFragment StoreEntitySet="os_invoices_detail">
+          <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+          <ScalarProperty Name="UserUpdate" ColumnName="UserUpdate" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="UserCreated" ColumnName="UserCreated" />
+          <ScalarProperty Name="PriceTotal" ColumnName="PriceTotal" />
+          <ScalarProperty Name="IvaId" ColumnName="IvaId" />
+          <ScalarProperty Name="PriceUnit" ColumnName="PriceUnit" />
+          <ScalarProperty Name="AmountArticles" ColumnName="AmountArticles" />
+          <ScalarProperty Name="ArticlesId" ColumnName="ArticlesId" />
+          <ScalarProperty Name="NumberItems" ColumnName="NumberItems" />
+          <ScalarProperty Name="InvoicesHeaderId" ColumnName="InvoicesHeaderId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="os_iva">
+      <EntityTypeMapping TypeName="OpenSkyCrmModel.os_iva">
+        <MappingFragment StoreEntitySet="os_iva">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="os_timbrado_data">
+      <EntityTypeMapping TypeName="OpenSkyCrmModel.os_timbrado_data">
+        <MappingFragment StoreEntitySet="os_timbrado_data">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+          <ScalarProperty Name="UserUpdateId" ColumnName="UserUpdateId" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="UserCreatedId" ColumnName="UserCreatedId" />
+          <ScalarProperty Name="InvoicesPuntoEstablecimiento" ColumnName="InvoicesPuntoEstablecimiento" />
+          <ScalarProperty Name="InvoicesPuntoExpedicion" ColumnName="InvoicesPuntoExpedicion" />
+          <ScalarProperty Name="EndDateValidityTimbrado" ColumnName="EndDateValidityTimbrado" />
+          <ScalarProperty Name="StartDateValidityTimbrado" ColumnName="StartDateValidityTimbrado" />
+          <ScalarProperty Name="EndRangeTimbrado" ColumnName="EndRangeTimbrado" />
+          <ScalarProperty Name="StartRangeTimbrado" ColumnName="StartRangeTimbrado" />
+          <ScalarProperty Name="Timbrado" ColumnName="Timbrado" />
+          <ScalarProperty Name="BranchCompanyId" ColumnName="BranchCompanyId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="os_sales_conditions">
+      <EntityTypeMapping TypeName="OpenSkyCrmModel.os_sales_conditions">
+        <MappingFragment StoreEntitySet="os_sales_conditions">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="os_currency_type">
+      <EntityTypeMapping TypeName="OpenSkyCrmModel.os_currency_type">
+        <MappingFragment StoreEntitySet="os_currency_type">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="os_invoices_header">
+      <EntityTypeMapping TypeName="OpenSkyCrmModel.os_invoices_header">
+        <MappingFragment StoreEntitySet="os_invoices_header">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+          <ScalarProperty Name="UserUpdateId" ColumnName="UserUpdateId" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="UserCreatedId" ColumnName="UserCreatedId" />
+          <ScalarProperty Name="TimbradoDataId" ColumnName="TimbradoDataId" />
+          <ScalarProperty Name="BranchCompanyId" ColumnName="BranchCompanyId" />
+          <ScalarProperty Name="TotalInvoiceAmount" ColumnName="TotalInvoiceAmount" />
+          <ScalarProperty Name="CurrencyTypeId" ColumnName="CurrencyTypeId" />
+          <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+          <ScalarProperty Name="SalesConditionId" ColumnName="SalesConditionId" />
+          <ScalarProperty Name="DateInvoices" ColumnName="DateInvoices" />
+          <ScalarProperty Name="InvoicesNumberRange" ColumnName="InvoicesNumberRange" />
+          <ScalarProperty Name="InvoicesNumber" ColumnName="InvoicesNumber" />
+          <ScalarProperty Name="ProcessNumber" ColumnName="ProcessNumber" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="os_payments">
+      <EntityTypeMapping TypeName="OpenSkyCrmModel.os_payments">
+        <MappingFragment StoreEntitySet="os_payments">
+          <ScalarProperty Name="VoucherNumber" ColumnName="VoucherNumber" />
+          <ScalarProperty Name="Change" ColumnName="Change" />
+          <ScalarProperty Name="AmountPaid" ColumnName="AmountPaid" />
+          <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+          <ScalarProperty Name="InvoiceHeaderId" ColumnName="InvoiceHeaderId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="os_payment_types">
+      <EntityTypeMapping TypeName="OpenSkyCrmModel.os_payment_types">
+        <MappingFragment StoreEntitySet="os_payment_types">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

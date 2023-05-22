@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OpenSkyCrmModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="OpenSkyCrmEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="os_articles" EntityType="OpenSkyCrmModel.os_articles" />
+    <EntitySet Name="os_articles_categories" EntityType="OpenSkyCrmModel.os_articles_categories" />
+    <EntitySet Name="os_city" EntityType="OpenSkyCrmModel.os_city" />
+    <EntitySet Name="os_customers" EntityType="OpenSkyCrmModel.os_customers" />
+    <EntitySet Name="os_document_type" EntityType="OpenSkyCrmModel.os_document_type" />
+    <EntitySet Name="os_invoices_detail" EntityType="OpenSkyCrmModel.os_invoices_detail" />
+    <EntitySet Name="os_iva" EntityType="OpenSkyCrmModel.os_iva" />
+    <EntitySet Name="os_timbrado_data" EntityType="OpenSkyCrmModel.os_timbrado_data" />
+    <AssociationSet Name="FK_os_articles_os_articles_categories" Association="OpenSkyCrmModel.FK_os_articles_os_articles_categories">
+      <End Role="os_articles_categories" EntitySet="os_articles_categories" />
+      <End Role="os_articles" EntitySet="os_articles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_articles_os_iva" Association="OpenSkyCrmModel.FK_os_articles_os_iva">
+      <End Role="os_iva" EntitySet="os_iva" />
+      <End Role="os_articles" EntitySet="os_articles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_customers_os_city" Association="OpenSkyCrmModel.FK_os_customers_os_city">
+      <End Role="os_city" EntitySet="os_city" />
+      <End Role="os_customers" EntitySet="os_customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_customers_os_document_type" Association="OpenSkyCrmModel.FK_os_customers_os_document_type">
+      <End Role="os_document_type" EntitySet="os_document_type" />
+      <End Role="os_customers" EntitySet="os_customers" />
+    </AssociationSet>
+    <EntitySet Name="os_sales_conditions" EntityType="OpenSkyCrmModel.os_sales_conditions" />
+    <EntitySet Name="os_currency_type" EntityType="OpenSkyCrmModel.os_currency_type" />
+    <EntitySet Name="os_invoices_header" EntityType="OpenSkyCrmModel.os_invoices_header" />
+    <AssociationSet Name="FK_os_invoices_header_os_currency_type" Association="OpenSkyCrmModel.FK_os_invoices_header_os_currency_type">
+      <End Role="os_currency_type" EntitySet="os_currency_type" />
+      <End Role="os_invoices_header" EntitySet="os_invoices_header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_invoices_header_os_customers" Association="OpenSkyCrmModel.FK_os_invoices_header_os_customers">
+      <End Role="os_customers" EntitySet="os_customers" />
+      <End Role="os_invoices_header" EntitySet="os_invoices_header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_invoices_detail_os_invoices_header" Association="OpenSkyCrmModel.FK_os_invoices_detail_os_invoices_header">
+      <End Role="os_invoices_header" EntitySet="os_invoices_header" />
+      <End Role="os_invoices_detail" EntitySet="os_invoices_detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_os_invoices_header_os_timbrado_data" Association="OpenSkyCrmModel.FK_os_invoices_header_os_timbrado_data">
+      <End Role="os_timbrado_data" EntitySet="os_timbrado_data" />
+      <End Role="os_invoices_header" EntitySet="os_invoices_header" />
+    </AssociationSet>
+    <EntitySet Name="os_payments" EntityType="OpenSkyCrmModel.os_payments" />
+    <AssociationSet Name="FK_os_payments_os_invoices_header" Association="OpenSkyCrmModel.FK_os_payments_os_invoices_header">
+      <End Role="os_invoices_header" EntitySet="os_invoices_header" />
+      <End Role="os_payments" EntitySet="os_payments" />
+    </AssociationSet>
+    <EntitySet Name="os_payment_types" EntityType="OpenSkyCrmModel.os_payment_types" />
+    <AssociationSet Name="FK_os_payments_os_payment_types" Association="OpenSkyCrmModel.FK_os_payments_os_payment_types">
+      <End Role="os_payment_types" EntitySet="os_payment_types" />
+      <End Role="os_payments" EntitySet="os_payments" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="os_articles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CategorieId" Type="Guid" Nullable="false" />
+    <Property Name="ReferenceInternal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InitialAmount" Type="Int32" />
+    <Property Name="CurrentAmount" Type="Int32" />
+    <Property Name="MinimumAmount" Type="Int32" />
+    <Property Name="Price" Type="Double" />
+    <Property Name="IvaId" Type="Guid" />
+    <Property Name="UserCreated" Type="Guid" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="UserUpdate" Type="Guid" />
+    <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="os_articles_categories" Relationship="OpenSkyCrmModel.FK_os_articles_os_articles_categories" FromRole="os_articles" ToRole="os_articles_categories" />
+    <NavigationProperty Name="os_iva" Relationship="OpenSkyCrmModel.FK_os_articles_os_iva" FromRole="os_articles" ToRole="os_iva" />
+  </EntityType>
+  <EntityType Name="os_articles_categories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="os_articles" Relationship="OpenSkyCrmModel.FK_os_articles_os_articles_categories" FromRole="os_articles_categories" ToRole="os_articles" />
+  </EntityType>
+  <EntityType Name="os_city">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="os_customers" Relationship="OpenSkyCrmModel.FK_os_customers_os_city" FromRole="os_city" ToRole="os_customers" />
+  </EntityType>
+  <EntityType Name="os_customers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SecondName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="FirstLastName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SecondLastName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CityId" Type="Guid" />
+    <Property Name="Neighborhood" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="350" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DocumentTypeId" Type="Guid" />
+    <Property Name="DocumentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="os_city" Relationship="OpenSkyCrmModel.FK_os_customers_os_city" FromRole="os_customers" ToRole="os_city" />
+    <NavigationProperty Name="os_document_type" Relationship="OpenSkyCrmModel.FK_os_customers_os_document_type" FromRole="os_customers" ToRole="os_document_type" />
+    <NavigationProperty Name="os_invoices_header" Relationship="OpenSkyCrmModel.FK_os_invoices_header_os_customers" FromRole="os_customers" ToRole="os_invoices_header" />
+  </EntityType>
+  <EntityType Name="os_document_type">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="os_customers" Relationship="OpenSkyCrmModel.FK_os_customers_os_document_type" FromRole="os_document_type" ToRole="os_customers" />
+  </EntityType>
+  <EntityType Name="os_invoices_detail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="InvoicesHeaderId" Type="Guid" />
+    <Property Name="NumberItems" Type="Int32" />
+    <Property Name="ArticlesId" Type="Guid" />
+    <Property Name="AmountArticles" Type="Double" />
+    <Property Name="PriceUnit" Type="Double" />
+    <Property Name="IvaId" Type="Guid" />
+    <Property Name="PriceTotal" Type="Double" />
+    <Property Name="UserCreated" Type="Guid" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="UserUpdate" Type="Guid" />
+    <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="os_invoices_header" Relationship="OpenSkyCrmModel.FK_os_invoices_detail_os_invoices_header" FromRole="os_invoices_detail" ToRole="os_invoices_header" />
+  </EntityType>
+  <EntityType Name="os_iva">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Impuesto" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="os_articles" Relationship="OpenSkyCrmModel.FK_os_articles_os_iva" FromRole="os_iva" ToRole="os_articles" />
+  </EntityType>
+  <EntityType Name="os_timbrado_data">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="BranchCompanyId" Type="Guid" />
+    <Property Name="Timbrado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="StartRangeTimbrado" Type="Int32" />
+    <Property Name="EndRangeTimbrado" Type="Int32" />
+    <Property Name="StartDateValidityTimbrado" Type="DateTime" Precision="3" />
+    <Property Name="EndDateValidityTimbrado" Type="DateTime" Precision="3" />
+    <Property Name="InvoicesPuntoExpedicion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InvoicesPuntoEstablecimiento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserCreatedId" Type="Guid" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="UserUpdateId" Type="Guid" />
+    <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="os_invoices_header" Relationship="OpenSkyCrmModel.FK_os_invoices_header_os_timbrado_data" FromRole="os_timbrado_data" ToRole="os_invoices_header" />
+  </EntityType>
+  <Association Name="FK_os_articles_os_articles_categories">
+    <End Type="OpenSkyCrmModel.os_articles_categories" Role="os_articles_categories" Multiplicity="1" />
+    <End Type="OpenSkyCrmModel.os_articles" Role="os_articles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_articles_categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_articles">
+        <PropertyRef Name="CategorieId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_articles_os_iva">
+    <End Type="OpenSkyCrmModel.os_iva" Role="os_iva" Multiplicity="0..1" />
+    <End Type="OpenSkyCrmModel.os_articles" Role="os_articles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_iva">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_articles">
+        <PropertyRef Name="IvaId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_customers_os_city">
+    <End Type="OpenSkyCrmModel.os_city" Role="os_city" Multiplicity="0..1" />
+    <End Type="OpenSkyCrmModel.os_customers" Role="os_customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_city">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_customers">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_customers_os_document_type">
+    <End Type="OpenSkyCrmModel.os_document_type" Role="os_document_type" Multiplicity="0..1" />
+    <End Type="OpenSkyCrmModel.os_customers" Role="os_customers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_document_type">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_customers">
+        <PropertyRef Name="DocumentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="os_sales_conditions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="os_currency_type">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="os_invoices_header" Relationship="OpenSkyCrmModel.FK_os_invoices_header_os_currency_type" FromRole="os_currency_type" ToRole="os_invoices_header" />
+  </EntityType>
+  <EntityType Name="os_invoices_header">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="ProcessNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InvoicesNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InvoicesNumberRange" Type="Int32" />
+    <Property Name="DateInvoices" Type="DateTime" Precision="3" />
+    <Property Name="SalesConditionId" Type="Guid" />
+    <Property Name="CustomerId" Type="Guid" />
+    <Property Name="CurrencyTypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TotalInvoiceAmount" Type="Double" />
+    <Property Name="BranchCompanyId" Type="Guid" />
+    <Property Name="TimbradoDataId" Type="Guid" />
+    <Property Name="UserCreatedId" Type="Guid" />
+    <Property Name="DateCreated" Type="DateTime" Precision="3" />
+    <Property Name="UserUpdateId" Type="Guid" />
+    <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="os_currency_type" Relationship="OpenSkyCrmModel.FK_os_invoices_header_os_currency_type" FromRole="os_invoices_header" ToRole="os_currency_type" />
+    <NavigationProperty Name="os_customers" Relationship="OpenSkyCrmModel.FK_os_invoices_header_os_customers" FromRole="os_invoices_header" ToRole="os_customers" />
+    <NavigationProperty Name="os_invoices_detail" Relationship="OpenSkyCrmModel.FK_os_invoices_detail_os_invoices_header" FromRole="os_invoices_header" ToRole="os_invoices_detail" />
+    <NavigationProperty Name="os_timbrado_data" Relationship="OpenSkyCrmModel.FK_os_invoices_header_os_timbrado_data" FromRole="os_invoices_header" ToRole="os_timbrado_data" />
+    <NavigationProperty Name="os_payments" Relationship="OpenSkyCrmModel.FK_os_payments_os_invoices_header" FromRole="os_invoices_header" ToRole="os_payments" />
+  </EntityType>
+  <Association Name="FK_os_invoices_header_os_currency_type">
+    <End Type="OpenSkyCrmModel.os_currency_type" Role="os_currency_type" Multiplicity="0..1" />
+    <End Type="OpenSkyCrmModel.os_invoices_header" Role="os_invoices_header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_currency_type">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_invoices_header">
+        <PropertyRef Name="CurrencyTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_invoices_header_os_customers">
+    <End Type="OpenSkyCrmModel.os_customers" Role="os_customers" Multiplicity="0..1" />
+    <End Type="OpenSkyCrmModel.os_invoices_header" Role="os_invoices_header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_customers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_invoices_header">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_invoices_detail_os_invoices_header">
+    <End Type="OpenSkyCrmModel.os_invoices_header" Role="os_invoices_header" Multiplicity="0..1" />
+    <End Type="OpenSkyCrmModel.os_invoices_detail" Role="os_invoices_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_invoices_header">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_invoices_detail">
+        <PropertyRef Name="InvoicesHeaderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_os_invoices_header_os_timbrado_data">
+    <End Type="OpenSkyCrmModel.os_timbrado_data" Role="os_timbrado_data" Multiplicity="0..1" />
+    <End Type="OpenSkyCrmModel.os_invoices_header" Role="os_invoices_header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_timbrado_data">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_invoices_header">
+        <PropertyRef Name="TimbradoDataId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="os_payments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Guid" Nullable="false" />
+    <Property Name="InvoiceHeaderId" Type="Guid" />
+    <Property Name="PaymentTypeId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AmountPaid" Type="Double" />
+    <Property Name="Change" Type="Double" />
+    <Property Name="VoucherNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="os_invoices_header" Relationship="OpenSkyCrmModel.FK_os_payments_os_invoices_header" FromRole="os_payments" ToRole="os_invoices_header" />
+    <NavigationProperty Name="os_payment_types" Relationship="OpenSkyCrmModel.FK_os_payments_os_payment_types" FromRole="os_payments" ToRole="os_payment_types" />
+  </EntityType>
+  <Association Name="FK_os_payments_os_invoices_header">
+    <End Type="OpenSkyCrmModel.os_invoices_header" Role="os_invoices_header" Multiplicity="0..1" />
+    <End Type="OpenSkyCrmModel.os_payments" Role="os_payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_invoices_header">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_payments">
+        <PropertyRef Name="InvoiceHeaderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="os_payment_types">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="os_payments" Relationship="OpenSkyCrmModel.FK_os_payments_os_payment_types" FromRole="os_payment_types" ToRole="os_payments" />
+  </EntityType>
+  <Association Name="FK_os_payments_os_payment_types">
+    <End Type="OpenSkyCrmModel.os_payment_types" Role="os_payment_types" Multiplicity="0..1" />
+    <End Type="OpenSkyCrmModel.os_payments" Role="os_payments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="os_payment_types">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="os_payments">
+        <PropertyRef Name="PaymentTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

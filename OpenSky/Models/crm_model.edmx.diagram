@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d28da54c621b4f4a94ec0a64c301bf95" Name="Diagram1" ZoomLevel="73">
+        <EntityTypeShape EntityType="OpenSkyCrmModel.os_articles" Width="1.5" PointX="8" PointY="8.375" />
+        <EntityTypeShape EntityType="OpenSkyCrmModel.os_articles_categories" Width="1.5" PointX="5.75" PointY="12.5" />
+        <EntityTypeShape EntityType="OpenSkyCrmModel.os_city" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="OpenSkyCrmModel.os_customers" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="OpenSkyCrmModel.os_document_type" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="OpenSkyCrmModel.os_invoices_detail" Width="1.5" PointX="7.5" PointY="2.875" />
+        <EntityTypeShape EntityType="OpenSkyCrmModel.os_iva" Width="1.5" PointX="5.75" PointY="9.5" />
+        <EntityTypeShape EntityType="OpenSkyCrmModel.os_timbrado_data" Width="1.5" PointX="3" PointY="7.75" />
+        <AssociationConnector Association="OpenSkyCrmModel.FK_os_articles_os_articles_categories" />
+        <AssociationConnector Association="OpenSkyCrmModel.FK_os_articles_os_iva" />
+        <AssociationConnector Association="OpenSkyCrmModel.FK_os_customers_os_city" />
+        <AssociationConnector Association="OpenSkyCrmModel.FK_os_customers_os_document_type" />
+        <EntityTypeShape EntityType="OpenSkyCrmModel.os_sales_conditions" Width="1.5" PointX="10.375" PointY="0.75" />
+        <EntityTypeShape EntityType="OpenSkyCrmModel.os_currency_type" Width="1.5" PointX="13.25" PointY="0.5" />
+        <EntityTypeShape EntityType="OpenSkyCrmModel.os_invoices_header" Width="1.5" PointX="15.5" PointY="5" />
+        <AssociationConnector Association="OpenSkyCrmModel.FK_os_invoices_header_os_currency_type" />
+        <AssociationConnector Association="OpenSkyCrmModel.FK_os_invoices_header_os_customers" />
+        <AssociationConnector Association="OpenSkyCrmModel.FK_os_invoices_detail_os_invoices_header" />
+        <AssociationConnector Association="OpenSkyCrmModel.FK_os_invoices_header_os_timbrado_data" />
+        <EntityTypeShape EntityType="OpenSkyCrmModel.os_payments" Width="1.5" PointX="17.75" PointY="6.375" />
+        <AssociationConnector Association="OpenSkyCrmModel.FK_os_payments_os_invoices_header" />
+        <EntityTypeShape EntityType="OpenSkyCrmModel.os_payment_types" Width="1.5" PointX="10.375" PointY="3.875" />
+        <AssociationConnector Association="OpenSkyCrmModel.FK_os_payments_os_payment_types" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
