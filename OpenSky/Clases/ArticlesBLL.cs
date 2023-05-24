@@ -21,10 +21,9 @@ namespace OpenSky.Clases
         {
             return await dbCrmContext.os_articles.Where(u => u.Id == id).SingleOrDefaultAsync();
         }
-        public async Task<List<Articles>> get_list_articles()
-        {
-            var list = new List<Articles>();
-            list = await (from d in dbCrmContext.os_articles
+        public List<Articles> get_list_articles()
+        { 
+           var list = (from d in dbCrmContext.os_articles
                     join a in dbCrmContext.os_articles_categories on d.CategorieId equals a.Id
                     join i in dbCrmContext.os_iva on d.IvaId equals i.Id
                     select new Articles
@@ -39,7 +38,7 @@ namespace OpenSky.Clases
                         MinimumAmount = d.MinimumAmount,
                         Categorie = a.Name,
                         Status = d.Status == "A" ? true : false
-                    }).ToListAsync();
+                    }).ToList();
 
             return list;
         }
